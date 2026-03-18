@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>box</title>
+        <style>
+           body{
+    height: 100vh;  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(2, 22, 22);
+}
+            .bb{
+                padding: 15px 40px;
+                border: none;
+                outline: none;
+                color: beige;
+                cursor: pointer;
+                position: relative;
+                z-index: 0;
+                border-radius: 12px;
+            }
+            .bb::after{
+                content: "";
+                z-index: -1;
+                position: absolute;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background-color: black;
+                left: 0;
+               border-radius: 10px;           
+            }
+            .bb::before{
+                content: "";
+                position: absolute;
+                top: -2px;
+                left: -2px;
+                width: calc(100% + 4px);
+                height: calc(100% + 4px);
+                background: linear-gradient(
+                45deg,
+                red, orange, yellow, green, cyan, blue, magenta, red
+                );
+                background-size: 600%;
+                filter: blur(6px);
+                z-index: -1;
+                border-radius: 12px;
+
+                animation: glowing 20s linear infinite; /* IMPORTANT */
+              }
+             @keyframes glowing{
+                0%{background-position: 0 0;}
+                50%{background-position: 400% 0;}
+                100%{background-position: 0 0;}
+             }
+             .bb:hover::before{
+                opacity: 1;
+             }
+             .bb:active::after{
+                background: transparent;
+             }
+             .bb:active{
+                color: rgb(18, 25, 2);
+                font-weight: bold;
+             }
+
+
+        </style>
+    </head>
+    <body>
+        <button class="bb">HELLO</button>
+        
+    </body>
+</html>
